@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12">
+      <h1 class="title">Mis proyectos</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-5 col-md-5">
+            <mat-card>
+              <mat-card-content>
+                <button routerLink="/home/create_project/create/0" type="button" mat-raised-button color="primary">
+                  Crear proyecto
+                </button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-xl-7 col-md-7">
+            <div class="input_search">
+              <mat-form-field appearance="fill">
+                <mat-label>Buscar por nombre</mat-label>
+                <input class="" [(ngModel)]="name" type="search" matInput>
+              </mat-form-field>
+              <button
+                type="submit"
+                mat-raised-button color="primary"
+                (click)="searchProject()"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container margin_top">
+        <mat-card>
+          <mat-card-content>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Opciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let project of projects | slice:page_from:page_until">
+                <td>{{project.id}}</td>
+                <td>{{project.name}}</td>
+                <td>
+                  <div class="link_table">
+                    <a class="link_table edit">
+                      <button
+                        routerLink="/home/create_project/edit/{{project.id}}"
+                        mat-icon-button color="primary"
+                        aria-label="Example icon button with a home icon">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    </a>
+                    <a class="link_table delete">
+                      <button (click)="deleteProject(project.id)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <mat-paginator [length]="projects.length"
+                             [pageSize]="pageSize"
+                             (page)="changePage($event)">
+              </mat-paginator>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

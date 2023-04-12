@@ -1,0 +1,16 @@
+<div class="cont_login">
+  <div class="login-box">
+    <img src="assets/img/mi_logo_deeckrite.png" class="avatar" alt="Avatar Image">
+    <h1>Login Here</h1>
+    <form [formGroup]="formLogin" (ngSubmit)="handleLogin()">
+      <!-- USERNAME INPUT -->
+      <label for="username">Email</label>
+      <input formControlName="email" type="text" id="username" placeholder="Ingresa tu correo electrónico">
+      <!-- PASSWORD INPUT -->
+      <label for="password">Password</label>
+      <input formControlName="password" type="password" id="password" placeholder="Ingresa tu contraseña">
+      <input [disabled]="formLogin.invalid" type="submit" value="Log In">
+    </form>
+  </div>
+</div>
+

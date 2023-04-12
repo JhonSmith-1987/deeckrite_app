@@ -1,0 +1,50 @@
+<div class="container" *ngIf="type === 'create'">
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="content_form">
+        <mat-card>
+          <mat-card-content>
+            <h1>Crear proyecto</h1>
+            <form [formGroup]="formCreateProject" (ngSubmit)="createProject()">
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre del proyecto</mat-label>
+                <input formControlName="name" type="text" matInput>
+              </mat-form-field>
+              <div class="cont_button_create">
+                <button [disabled]="formCreateProject.invalid" type="submit" mat-raised-button color="primary">Crear</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="type === 'edit'">
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="content_form">
+        <mat-card>
+          <mat-card-content>
+            <h1>Editar proyecto</h1>
+            <form [formGroup]="formCreateProject" (ngSubmit)="editProject()">
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre del proyecto</mat-label>
+                <input formControlName="name" type="text" matInput>
+              </mat-form-field>
+              <div class="cont_button_create">
+                <button
+                  [disabled]="formCreateProject.invalid"
+                  type="submit"
+                  mat-raised-button color="primary"
+                >
+                  Editar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

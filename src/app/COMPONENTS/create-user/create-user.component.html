@@ -1,0 +1,101 @@
+<div class="container" *ngIf="type === 'create'">
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="content_form">
+        <mat-card>
+          <mat-card-content>
+            <h1>Crear usuario</h1>
+            <form [formGroup]="formCreateUser" (ngSubmit)="createUser()">
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre de usuario</mat-label>
+                <input formControlName="name" type="text" matInput placeholder="Nombre de usuario" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Email del usuario</mat-label>
+                <input type="email" matInput placeholder="pat@example.com" formControlName="email" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Select</mat-label>
+                <mat-select formControlName="project_id">
+                  <mat-option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="cont_button_create">
+                <button [disabled]="formCreateUser.invalid" type="submit" mat-raised-button color="primary">Crear
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="type === 'edit'">
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="content_form">
+        <mat-card>
+          <mat-card-content>
+            <h1>Editar proyecto</h1>
+            <ng-container>
+              <div class="cont_button_option_edit">
+                <button (click)="showEditUser()" type="button" mat-raised-button color="primary">Editar usuario y email</button>
+                <button (click)="showEditPassword()" type="button" mat-raised-button color="primary">Editar contraseña</button>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="edit_user">
+              <form [formGroup]="formCreateUser" (ngSubmit)="editUser()">
+                <mat-form-field appearance="fill">
+                  <mat-label>Nombre de usuario</mat-label>
+                  <input formControlName="name" type="text" matInput placeholder="Nombre de usuario" required>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Email del usuario</mat-label>
+                  <input type="email" matInput placeholder="pat@example.com" formControlName="email" required>
+                </mat-form-field>
+                <div class="cont_button_create">
+                  <button
+                    type="submit"
+                    mat-raised-button color="primary"
+                  >
+                    Editar
+                  </button>
+                </div>
+              </form>
+            </ng-container>
+            <ng-container *ngIf="edit_password">
+              <form [formGroup]="formCreateUser" (ngSubmit)="editUserPassword()">
+                <mat-form-field appearance="fill">
+                  <mat-label>Contraseña</mat-label>
+                  <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                          [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div class="cont_button_create">
+                  <button
+                    type="submit"
+                    mat-raised-button color="primary"
+                  >
+                    Editar
+                  </button>
+                </div>
+              </form>
+            </ng-container>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+

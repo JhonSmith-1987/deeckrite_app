@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12">
+      <h1 class="title">Mis Usuarios</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-5 col-md-5">
+            <mat-card>
+              <mat-card-content>
+                <button routerLink="/home/create_user/create/0" type="button" mat-raised-button color="primary">
+                  Crear usuario
+                </button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-xl-7 col-md-7">
+            <div class="input_search">
+              <mat-form-field appearance="fill">
+                <mat-label>Buscar por nombre</mat-label>
+                <input class="" [(ngModel)]="name" type="search" matInput>
+              </mat-form-field>
+              <button
+                type="submit"
+                mat-raised-button color="primary"
+                (click)="searchUser()"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container margin_top">
+        <mat-card>
+          <mat-card-content>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Id proyecto</th>
+                <th>Email</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of users | slice:page_from:page_until">
+                <td>{{user.name}}</td>
+                <td>{{user.project_id}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                  <div class="link_table">
+                    <a class="link_table edit">
+                      <button
+                        routerLink="/home/create_user/edit/{{user.id}}"
+                        mat-icon-button color="primary"
+                        aria-label="Example icon button with a home icon">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    </a>
+                    <a class="link_table delete">
+                      <button (click)="deleteuser(user.id)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              <mat-paginator [length]="users.length"
+                             [pageSize]="pageSize"
+                             (page)="changePage($event)">
+              </mat-paginator>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+

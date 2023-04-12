@@ -23,6 +23,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -62,6 +64,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "deeckrite-master-frontend:build",
+            "proxyConfig": "src/proxy.conf.json",
+            "port": 4201
+          },
           "configurations": {
             "production": {
               "browserTarget": "deeckrite-master-frontend:build:production"
@@ -90,12 +97,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "096e6f03-6233-47f6-bfa1-4c0faa959949"
   }
 }
