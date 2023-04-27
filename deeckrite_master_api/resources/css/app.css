@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content_table {
+  width: 100%;
+  overflow: hidden;
+}
+.content_button {
+  margin: 2rem 0;
+}
